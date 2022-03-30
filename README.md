@@ -60,11 +60,9 @@ import ‘package:flutter_upayments/flutter_upayments.dart’;
 
                               PaymentDetails, //All payment details
 
-                              IsProduction, // is production mode or testing mode
-
                               OnSuccess, // method OnSuccess which returns data on callback
 
-                              OnFailure // method OnFailure which data on error
+                              OnFailure // method OnFailure which returns data on error
 
 ); 
 
@@ -132,7 +130,7 @@ import ‘package:flutter_upayments/flutter_upayments.dart’;
 
     paymentGateway: “”, 
 
-    /* knet for KNet transaction, c for Credit Card Transaction For Sandbo: NA */
+    /* knet for KNet transaction, c for Credit Card Transaction For Sandbox: NA */
 
     whitelabled: “”, 
 
@@ -188,15 +186,7 @@ import ‘package:flutter_upayments/flutter_upayments.dart’;
 
   );
 
- RequestPayment( context, userData, true, OnSuccess, OnFailure ); 
-
-```
-
-* **IsProduction (Required)**: Pass boolean to show the mode of RequestPayment. if you send TRUE it will request payment in Production Mode. if you send FALSE it will request payment in Testing Mode.
-
-```dart
-
-   RequestPayment( context, PaymentDetails, true, OnSuccess, OnFailure ); 
+ RequestPayment( context, userData, OnSuccess, OnFailure ); 
 
 ```
 
@@ -322,7 +312,7 @@ class mainapp extends StatelessWidget {
 
           onPressed: () =>
 
-              RequestPayment(context, userData, false, OnSuccess, OnFailure),
+              RequestPayment(context, userData, OnSuccess, OnFailure),
 
           child: Text(‘Pay’),
 
@@ -347,13 +337,6 @@ void main() => runApp(
     );
 
 ```
-
-## Screenshot
-
-![Screenshot](https://cdn-icons.flaticon.com/png/512/2586/premium/2586488.png?token=exp=1645526945~hmac=248c1bc8af89cf25619c0e11812a2c88)
-
-*screenshot 1*
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open the issue first to discuss what you would like to change.

@@ -1750,7 +1750,6 @@ class _DetailformsState extends State<Detailforms> {
                           RequestPayment(
                               context,
                               developmentSelected ? userData : productiondata,
-                              developmentSelected ? false : true,
                               OnSuccess,
                               OnFailure);
                         },

@@ -1,7 +1,8 @@
 name: flutter_upayments
-description: A new Flutter package project.
-version: 0.0.1
-homepage:
+description: The UPayments flutter SDK allows you to integrate easily and faster with native Android and iOS apps. Manage your transactions and clients effectively and in real-time through our easy-to-use real-time dashboard. We provide a powerful, secure payment and pre-built UI that can be used out-of-the-box to collect your users payment details. This pre-built UI lets you accept KNET, Apple Pay, Samsung Pay, Visa and MasterCard.
+
+version: 1.0.2
+homepage: https://github.com/upaymentskw/fluttersdk
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -14,6 +15,7 @@ dependencies:
   http: ^0.13.4
   webview_flutter: ^3.0.0
   fluttertoast: ^8.0.8
+  flutter_bcrypt: ^1.0.7
 
 dev_dependencies:
   flutter_test:

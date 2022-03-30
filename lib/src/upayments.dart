@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 import 'package:flutter_upayments/src/api_services/api_base_helper.dart';
 import 'package:flutter_upayments/src/api_services/app_const.dart'; 
 import 'package:flutter_upayments/src/u_data.dart';
@@ -14,7 +15,6 @@ import '../flutter_upayments.dart';
 Future<dynamic> RequestPayment(
   context,
   paymentDetails data,
-  bool isProduction,
   Function(
     bool isSuccess,
     Map TransactionDetails,
@@ -42,13 +42,15 @@ Future<dynamic> RequestPayment(
   var paymentUrl;
 
 try {
-
+     var salt10 = await FlutterBcrypt.saltWithRounds(rounds: 10);
+    var encryptedSHA = await FlutterBcrypt.hashPw(
+          password: data.apiKey!, salt: salt10);
 
   Map details = {
     "merchant_id": data.merchantId,
     "username": data.username,
     "password": data.password,
-    "api_key": data.apiKey,
+    "api_key": data.testMode == "0" ? encryptedSHA : data.apiKey,
     "order_id": data.orderId,
     "total_price": data.totalPrice,
     "CurrencyCode": data.currencyCode,
@@ -75,7 +77,7 @@ try {
   print(head);
   print(body);
   final response = await _helper.post(
-      isProduction
+      data.testMode == "0"
           ? AppConst.getProductionPaymentUrl
           : AppConst.getTestPaymentUrl,
       body);
@@ -120,7 +122,6 @@ try {
           builder: (BuildContext context) {
             return upayDialog(
                 data: data,
-                isProduction: isProduction,
                 OnFailure: OnFailure,
                 OnSuccess: OnSuccess,
                 weblink: paymentUrl);

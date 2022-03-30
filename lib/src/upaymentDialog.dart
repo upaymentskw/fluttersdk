@@ -6,7 +6,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 class upayDialog extends StatefulWidget {
     paymentDetails data;
     String? weblink;
-    bool isProduction;
     Function(
       bool status,
       Map TransactionDetails,
@@ -14,7 +13,7 @@ class upayDialog extends StatefulWidget {
     )
         OnSuccess;
     Function(bool status, Map TransactionDetails,String message,) OnFailure;
-  upayDialog({Key ?key,required this.data,required this.isProduction,required this.OnFailure,required this.OnSuccess,required this.weblink }) : super(key: key);
+  upayDialog({Key ?key,required this.data,required this.OnFailure,required this.OnSuccess,required this.weblink }) : super(key: key);
 
   @override
   _upayDialogState createState() => _upayDialogState();
